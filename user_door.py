@@ -96,7 +96,8 @@ class UserProtal():
                                     bind_host=selected_host,
                                     session_tag=md5_str,
                                 )
-
+                            elif user_choice == -1:
+                                break
                             else:
                                 print('Invalid input')
                                 print("--------------please retry-----------")

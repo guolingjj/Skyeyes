@@ -56,7 +56,7 @@ ROOT_URLCONF = 'Skyeyes.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["%s/%s" %(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,7 +114,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
+LOGIN_URL="/login"
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -123,3 +123,4 @@ STATIC_URL = '/static/'
 SESSION_TRACKER='%s/backend/test.sh'%BASE_DIR
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 AUTH_USER_MODEL='audit.UserProfile'
+STATICFILES_DIRS=(os.path.join(BASE_DIR,'statics'),)
