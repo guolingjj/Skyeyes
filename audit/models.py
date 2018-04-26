@@ -131,3 +131,33 @@ class SeesionLog(models.Model):
     date=models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.session_tag
+
+
+class Task(models.Model):
+    '''批量任务'''
+    task_type_choices=(('cmd','批量命令'),
+                       ('file_transfer','文件传输')
+                       )
+    task_type=models.CharField(max_length=16,choices=task_type_choices)
+    content=models.CharField(max_length=255,verbose_name='任务内容')
+    user=models.ForeignKey('UserProfile',on_delete=models.CASCADE)
+    date=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '%s %s'%(self.task_type,self.content)
+
+
+class TaskLogDetail(models.Model):
+    '''存储主任务的结果'''
+    task=models.ForeignKey('Task',on_delete=models.CASCADE)
+    bind_host=models.ForeignKey('BindHost',on_delete=models.CASCADE)
+    run_result=models.TextField(verbose_name='执行结果',)
+    status_choices=((0,'running'),
+                    (1,'sucess'),
+                    (2,'faile'),
+                    (3,'timeout'),
+                    )
+    status=models.SmallIntegerField(choices=status_choices,default=0)
+    date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return '%s %s'%(self.task,self.bind_host)

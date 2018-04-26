@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 from django.contrib.auth import login,authenticate,logout
-
+from backend.multitask import MultiTaskManage
+import json
 
 def acc_login(req):
 
@@ -32,3 +33,13 @@ def host_mag(req):
 def acc_logout(req):
     logout(req)
     return redirect("/login")
+
+def batch_task_mag(req):
+    if req.method=='POST':
+        task_arguments=json.loads(req.POST.get('task_args'))
+
+
+        task_obj=MultiTaskManage(req)
+        task_id=task_obj.task_id
+
+        return HttpResponse(task_id)

@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'Skyeyes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'Skyeyes',
+        'USER': 'root',
+        'PASSWORD': '123456',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -121,6 +125,7 @@ LOGIN_URL="/login"
 
 STATIC_URL = '/static/'
 SESSION_TRACKER='%s/backend/test.sh'%BASE_DIR
+MUTIL_RUN='python %s/backend/task_runner.py'%BASE_DIR
 TEMPLATE_DIRS = (os.path.join(BASE_DIR,  'templates'),)
 AUTH_USER_MODEL='audit.UserProfile'
 STATICFILES_DIRS=(os.path.join(BASE_DIR,'statics'),)

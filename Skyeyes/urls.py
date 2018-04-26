@@ -21,6 +21,7 @@ urlpatterns = [
     path(r'web_ssh/', views.web_ssh,name='web_ssh'),
     path(r'host_mag/', views.host_mag,name='host_mag'),
     path(r'acc_logout/', views.acc_logout,name='acc_logout'),
+    path(r'batch_task_mag/', views.batch_task_mag,name='batch_task_mag'),
     path('admin/', admin.site.urls),
     path('web/', include('web.urls')),
 ]
